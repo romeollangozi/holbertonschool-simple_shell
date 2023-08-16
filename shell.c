@@ -1,49 +1,37 @@
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include<sys/wait.h>
-#include <stdlib.h>
+#include "main.h"
 int main()
 {
-        while (1)
-        {
         pid_t pid;
         char *commandLine;
-        size_t size = 100;
-        char *argum[3];
-        char *token;
-        char *filename;
-        char *delim = " ";
-        int i = 1;
-        int chars;
-        char path[50] = "/bin/";
-                printf("$");
-                commandLine = malloc(size);
-                chars = getline(&commandLine, &size, stdin);
+        char **argum;
+	int chars;
+	size_t max = MAX_CHARS;	
+        while (1)
+        {
+
+		printf("$");
+                chars = getline(&commandLine, &max, stdin);
+
                 if (strcmp(commandLine, "\n") == 0)
                         continue;
                 if (strcmp(commandLine, "exit\n") == 0)
                         break;
+		if (chars == -1)
+			break;
+
                 if (commandLine[chars - 1] == '\n')
                         commandLine[chars - 1] = '\0';
-                argum[0] = strtok(commandLine, delim);
-                filename = argum[0];
-               while ((token = strtok(NULL, delim)) != NULL)
-               {
-                        argum[i] = token;
-                        i++;
-               }
-               argum[i] = NULL;
-               strcat(path, filename);
+		
+		argum = token_line(commandLine, " \n");
                 pid = fork();
                 if (pid == 0)
                 {
-                                execvp(filename, argum);
+                                execvp(argum[0], argum);
                 }
                 else
                 {
                         wait(NULL);
-                        i = 0;
+			free(argum);
                 }
       }
 	return (0);
