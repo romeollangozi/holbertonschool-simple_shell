@@ -45,5 +45,6 @@ int main()
                         wait(NULL);
                         i = 0;
                 }
-        }
+      }
+	return (0);
 }
