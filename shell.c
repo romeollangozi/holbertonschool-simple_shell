@@ -18,7 +18,8 @@ int main()
                         continue;
 
                 if (strcmp(commandLine, "exit\n") == 0)
-		{	
+		{
+			free(commandLine);	
                         exit(0);
 		}
 		if (chars == -1)
