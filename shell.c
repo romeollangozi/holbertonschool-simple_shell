@@ -9,7 +9,7 @@ int main()
 	size_t max = MAX_CHARS;	
         while (1)
         {
-		if (isatty(isatty(STDIN_FILENO)))
+		if (isatty(STDIN_FILENO))
 			printf("$");
 
                 chars = getline(&commandLine, &max, stdin);
@@ -18,7 +18,7 @@ int main()
                 if (strcmp(commandLine, "exit\n") == 0)
                         exit(0);
 		if (chars == -1)
-			exit(1);
+			exit(0);
 
 		argum = token_line(commandLine, " \n");
 		if (strcmp("cd", argum[0]) == 0)
@@ -31,7 +31,7 @@ int main()
                 {
                               if(execvp(argum[0], argum))
 			      {
-					printf("%s: command not found\n", argum[0]);
+					perror("%s: command not found\n");
 					continue;
 			      }
                 }
