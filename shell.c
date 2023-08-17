@@ -4,15 +4,12 @@ int main()
         pid_t pid;
         char *commandLine;
         char **argum;
-	char **patharg;
 	int chars;
 	size_t max = MAX_CHARS;
-	char *path;
 
         while (1)
         {
 		
-		path = getenv("PATH");
 		printf("$");
                 chars = getline(&commandLine, &max, stdin);
                 if (strcmp(commandLine, "\n") == 0)
@@ -22,15 +19,19 @@ int main()
 		if (chars == -1)
 			break;
 
-                if (commandLine[chars - 1] == '\n')
-                        commandLine[chars - 1] = '\0';
-		
 		argum = token_line(commandLine, " \n");
-		patharg = token_path(path, ":", argum[0]);
+		if (strcmp("cd", argum[0]) == 0)
+		{
+			chdir(argum[1]);
+		}
                 pid = fork();
                 if (pid == 0)
                 {
-                                execve(argum[0], argum, NULL);
+                              if(execvp(argum[0], argum))
+			      {
+					printf("%s: command not found\n", argum[0]);
+					continue;
+			      }
                 }
                 else
                 {
