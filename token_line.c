@@ -15,7 +15,7 @@ char  **token_line(char *command_line, char *delim)
 	char **argv;
 	int i;
 	
-	command_line_copy = malloc(sizeof(char) * strlen(command_line));
+	command_line_copy = malloc(sizeof(char) * strlen(command_line)+ 1);
 	strcpy(command_line_copy, command_line);
 	token = strtok(command_line, delim);
 	
@@ -31,7 +31,7 @@ char  **token_line(char *command_line, char *delim)
 	
 	for (i = 0; token != NULL; i++)
 	{
-		argv[i] = malloc(sizeof(char) * strlen(token));
+		argv[i] = malloc(sizeof(char) * strlen(token) + 1);
 		strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
