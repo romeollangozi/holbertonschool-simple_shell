@@ -23,8 +23,10 @@ int main()
                         exit(0);
 		}
 		if (chars == -1)
+		{
+			free(commandLine);
 			exit(0);
-
+		}
 		argum = token_line(commandLine, delim);
 		if (strcmp("cd", argum[0]) == 0)
 		{
@@ -37,6 +39,14 @@ int main()
                               if(execvp(argum[0], argum))
 			      {
 					perror("%s: command not found\n");
+					
+					i = 0;
+					while (argum[i])
+					{
+						free(argum[i]);
+						i++;
+					}
+					free(argum);
 					continue;
 			      }
                 }
