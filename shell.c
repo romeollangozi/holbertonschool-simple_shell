@@ -16,9 +16,9 @@ int main()
                 if (strcmp(commandLine, "\n") == 0)
                         continue;
                 if (strcmp(commandLine, "exit\n") == 0)
-                        break;
+                        exit(0);
 		if (chars == -1)
-			return(1);
+			exit(1);
 
 		argum = token_line(commandLine, " \n");
 		if (strcmp("cd", argum[0]) == 0)
@@ -50,5 +50,5 @@ int main()
                 }
 		break;
       }
-	return (0);
+	exit (0);
 }
