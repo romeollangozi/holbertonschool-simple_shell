@@ -9,13 +9,13 @@
 
 char  **token_line(char *command_line, char *delim)
 {
-	char *token;
+	char *token = NULL;
 	int num_tokens = 0;
-	char *command_line_copy;
-	char **argv;
-	int i;
+	char *command_line_copy = NULL;
+	char **argv = NULL;
+	int i = 0;
 	
-	command_line_copy = malloc(sizeof(char) * strlen(command_line)+ 1);
+	command_line_copy = malloc(sizeof(char) * strlen(command_line) + 1);
 	strcpy(command_line_copy, command_line);
 	token = strtok(command_line, delim);
 	
@@ -36,5 +36,6 @@ char  **token_line(char *command_line, char *delim)
 		token = strtok(NULL, delim);
 	}
 	free(command_line_copy);
+	argv[i] = NULL;
 	return (argv);
 }

@@ -4,6 +4,7 @@ int main()
         pid_t pid;
         char *commandLine = NULL;
         char **argum = NULL;
+	char *delim = " \n";
 	int chars = 0;
 	int i = 0;
 	size_t max = MAX_CHARS;	
@@ -15,12 +16,15 @@ int main()
                 chars = getline(&commandLine, &max, stdin);
                 if (strcmp(commandLine, "\n") == 0)
                         continue;
+
                 if (strcmp(commandLine, "exit\n") == 0)
+		{	
                         exit(0);
+		}
 		if (chars == -1)
 			exit(0);
 
-		argum = token_line(commandLine, " \n");
+		argum = token_line(commandLine, delim);
 		if (strcmp("cd", argum[0]) == 0)
 		{
 			chdir(argum[1]);
@@ -45,7 +49,6 @@ int main()
 				i++;
 			}
 			free(argum);
-			free(commandLine);
 			continue;
                 }
 		break;
