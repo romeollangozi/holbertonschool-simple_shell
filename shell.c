@@ -23,6 +23,7 @@ int main()
 		if (strcmp("cd", argum[0]) == 0)
 		{
 			chdir(argum[1]);
+			continue;
 		}
                 pid = fork();
                 if (pid == 0)
