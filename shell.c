@@ -20,7 +20,7 @@ int main()
                 if (strcmp(commandLine, "exit\n") == 0)
 		{
 			free(commandLine);	
-                        exit(2);
+                        exit(0);
 		}
 		if (chars == -1)
 		{
@@ -44,7 +44,7 @@ int main()
                 {
                               if(execvp(argum[0], argum))
 			      {
-					perror("%s: command not found\n");
+					perror("");
 					
 					i = 0;
 					while (argum[i])
@@ -53,7 +53,7 @@ int main()
 						i++;
 					}
 					free(argum);
-					continue;
+					exit(2);
 			      }
                 }
                 else
