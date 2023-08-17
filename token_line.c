@@ -7,7 +7,7 @@
  * Return: array of tokens
  */
 
-char **token_line(char *command_line, char *delim)
+char  **token_line(char *command_line, char *delim)
 {
 	char *token;
 	int num_tokens = 0;
@@ -35,5 +35,6 @@ char **token_line(char *command_line, char *delim)
 		strcpy(argv[i], token);
 		token = strtok(NULL, delim);
 	}
+	free(command_line_copy);
 	return (argv);
 }

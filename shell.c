@@ -2,9 +2,10 @@
 int main()
 {
         pid_t pid;
-        char *commandLine;
-        char **argum;
-	int chars;
+        char *commandLine = NULL;
+        char **argum = NULL;
+	int chars = 0;
+	int i = 0;
 	size_t max = MAX_CHARS;	
         while (1)
         {
@@ -31,13 +32,20 @@ int main()
                               if(execvp(argum[0], argum))
 			      {
 					printf("%s: command not found\n", argum[0]);
-					return (1);
+					continue;
 			      }
                 }
                 else
                 {
                         wait(NULL);
+			i = 0;
+			while (argum[i])
+			{
+				free(argum[i]);
+				i++;
+			}
 			free(argum);
+			free(commandLine);
 			continue;
                 }
 		break;
