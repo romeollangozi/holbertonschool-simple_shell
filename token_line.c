@@ -24,7 +24,11 @@ char  **token_line(char *command_line, char *delim)
 		num_tokens++;
 		token = strtok(NULL, delim);
 	}
-
+	if (num_tokens == 0)
+	{	
+		free(command_line_copy);
+		return NULL;
+	}
 	num_tokens++;
 	argv = malloc(sizeof(char*) * num_tokens);
 	token = strtok(command_line_copy, delim);

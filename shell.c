@@ -20,7 +20,7 @@ int main()
                 if (strcmp(commandLine, "exit\n") == 0)
 		{
 			free(commandLine);	
-                        exit(0);
+                        exit(2);
 		}
 		if (chars == -1)
 		{
@@ -28,6 +28,12 @@ int main()
 			exit(0);
 		}
 		argum = token_line(commandLine, delim);
+
+			if (argum == NULL)
+			{	
+				free(argum);
+				continue;
+			}
 		if (strcmp("cd", argum[0]) == 0)
 		{
 			chdir(argum[1]);
