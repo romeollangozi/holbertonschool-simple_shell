@@ -9,7 +9,6 @@ void free_argum(char **argum, char *commandLine)
 		free(argum[i]);
 		i++;
 	}
-	free(commandLine);
 	free(argum);
 }
 int main()
@@ -29,7 +28,7 @@ int main()
                         continue;
 		if (strcmp(commandLine, "exit\n") == 0)
 		{
-			free(commandLine);	
+			free(commandLine);
                         exit(exit_status);
 		}
 		if (chars == -1)
@@ -40,7 +39,7 @@ int main()
 		argum = token_line(commandLine, delim);
 		if (argum == NULL)
 			{
-				free_argum(argum, commandLine);
+				free(commandLine);
 				continue;
 			}
                 pid = fork();
