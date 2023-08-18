@@ -40,7 +40,7 @@ int main()
 		argum = token_line(commandLine, delim);
 		if (argum == NULL)
 			{
-				free(argum, commandLine);
+				free_argum(argum, commandLine);
 				continue;
 			}
                 pid = fork();
@@ -62,7 +62,7 @@ int main()
 			{
 				exit_status = WEXITSTATUS(status);
 			}
-			free(argum, commandLine);
+			free_argum(argum, commandLine);
 			continue;
                 }
       }
