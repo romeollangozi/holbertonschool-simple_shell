@@ -7,7 +7,7 @@ int main()
 	char *delim = " \n";
 	int chars = 0;
 	int i = 0;
-	int status, exit_status;
+	int status = 0, exit_status = 0;
 	size_t max = MAX_CHARS;
 
 	while (1)
