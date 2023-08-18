@@ -16,7 +16,7 @@ int main()
         pid_t pid;
         char *commandLine = NULL, *delim = " \n";
         char **argum = NULL;
-	int status = 0, exit_status = 0, i = 0, chars = 0;
+	int status = 0, exit_status = 0, chars = 0;
 	size_t max = MAX_CHARS;
 
 	while (1)
@@ -52,7 +52,6 @@ int main()
 			{
 				exit(127);
 			}
-
 				exit(2);
 		}
                 else
