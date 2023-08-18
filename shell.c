@@ -47,11 +47,7 @@ int main()
 			execvp(argum[0], argum);
 			perror("");
 			free_argum(argum, commandLine);
-			if (strcmp("",getenv("PATH")) == 0)
-			{
-				exit(127);
-			}
-				exit(2);
+			exit(EXIT_FAILURE);
 		}
                 else
                 {
