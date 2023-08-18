@@ -1,6 +1,6 @@
 #include "main.h"
 
-void free_argum(char **argum)
+void free_argum(char **argum, char *commandLine)
 {
 	int i = 0;
 	
@@ -9,6 +9,7 @@ void free_argum(char **argum)
 		free(argum[i]);
 		i++;
 	}
+	free(commandLine);
 	free(argum);
 }
 int main()
@@ -39,7 +40,7 @@ int main()
 		argum = token_line(commandLine, delim);
 		if (argum == NULL)
 			{
-				free(argum);
+				free(argum, commandLine);
 				continue;
 			}
                 pid = fork();
@@ -61,7 +62,7 @@ int main()
 			{
 				exit_status = WEXITSTATUS(status);
 			}
-			free(argum);
+			free(argum, commandLine);
 			continue;
                 }
       }
