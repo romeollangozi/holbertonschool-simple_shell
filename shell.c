@@ -53,7 +53,10 @@ int main()
 				i++;
 			}
 			free(argum);
-			exit(2);
+			if (strcmp("",getenv("PATH")) == 0)
+				exit(127);
+
+				exit(2);
 		}
                 else
                 {
