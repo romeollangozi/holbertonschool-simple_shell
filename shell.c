@@ -2,24 +2,19 @@
 int main()
 {
         pid_t pid;
-        char *commandLine = NULL;
+        char *commandLine = NULL, *delim = " \n";
         char **argum = NULL;
-	char *delim = " \n";
-	int chars = 0;
-	int i = 0;
-	int status = 0, exit_status = 0;
+	int status = 0, exit_status = 0, i = 0, chars = 0;
 	size_t max = MAX_CHARS;
 
 	while (1)
         {
 		if (isatty(STDIN_FILENO))
 			printf("$");
-
                 chars = getline(&commandLine, &max, stdin);
                 if (strcmp(commandLine, "\n") == 0)
                         continue;
-
-                if (strcmp(commandLine, "exit\n") == 0)
+		if (strcmp(commandLine, "exit\n") == 0)
 		{
 			free(commandLine);	
                         exit(exit_status);
@@ -30,17 +25,11 @@ int main()
 			exit(0);
 		}
 		argum = token_line(commandLine, delim);
-
-			if (argum == NULL)
+		if (argum == NULL)
 			{
 				free(argum);
 				continue;
 			}
-		if (strcmp("cd", argum[0]) == 0)
-		{
-			chdir(argum[1]);
-			continue;
-		}
                 pid = fork();
                 if (pid == 0)
                 {
@@ -63,7 +52,6 @@ int main()
                 else
                 {
                         waitpid(pid, &status, 0);
-
 			if (WIFEXITED(status))
 			{
 				exit_status = WEXITSTATUS(status);
