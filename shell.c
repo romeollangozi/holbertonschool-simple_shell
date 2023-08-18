@@ -1,4 +1,16 @@
 #include "main.h"
+
+void free_argum(char **argum)
+{
+	int i = 0;
+	
+	while (argum[i])
+	{
+		free(argum[i]);
+		i++;
+	}
+	free(argum);
+}
 int main()
 {
         pid_t pid;
@@ -35,13 +47,7 @@ int main()
                 {
 			execvp(argum[0], argum);
 			perror("");
-			i = 0;
-			while (argum[i])
-			{
-				free(argum[i]);
-				i++;
-			}
-			free(argum);
+			free_argum(argum);
 			if (strcmp("",getenv("PATH")) == 0)
 			{
 				exit(127);
@@ -55,12 +61,6 @@ int main()
 			if (WIFEXITED(status))
 			{
 				exit_status = WEXITSTATUS(status);
-			}
-			i = 0;
-			while (argum[i])
-			{
-				free(argum[i]);
-				i++;
 			}
 			free(argum);
 			continue;
