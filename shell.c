@@ -1,5 +1,4 @@
 #include "main.h"
-
 void free_argum(char **argum, char *commandLine)
 {
 	int i = 0;
@@ -10,6 +9,28 @@ void free_argum(char **argum, char *commandLine)
 		i++;
 	}
 	free(argum);
+}
+void execute(int *status , pid_t pid, char **argum, char *commandLine, int *exit_status)
+{
+
+	if (pid == 0)
+	{
+		execvp(argum[0], argum);
+		perror("");
+		free_argum(argum, commandLine);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		waitpid(pid, status, 0);
+		if (WIFEXITED(*status))
+		{
+				*exit_status = WEXITSTATUS(*status);
+		}
+		free_argum(argum, commandLine);
+		return;
+	}
+
 }
 int main()
 {
@@ -42,23 +63,7 @@ int main()
 				continue;
 			}
                 pid = fork();
-                if (pid == 0)
-                {
-			execvp(argum[0], argum);
-			perror("");
-			free_argum(argum, commandLine);
-			exit(EXIT_FAILURE);
-		}
-                else
-                {
-                        waitpid(pid, &status, 0);
-			if (WIFEXITED(status))
-			{
-				exit_status = WEXITSTATUS(status);
-			}
-			free_argum(argum, commandLine);
-			continue;
-                }
+		execute(&status, pid, argum, commandLine, &exit_status);
       }
 	exit (0);
 }
