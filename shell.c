@@ -54,7 +54,9 @@ int main()
 			}
 			free(argum);
 			if (strcmp("",getenv("PATH")) == 0)
+			{
 				exit(127);
+			}
 
 				exit(2);
 		}
