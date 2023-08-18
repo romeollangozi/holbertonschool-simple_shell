@@ -39,7 +39,6 @@ int main()
 		argum = token_line(commandLine, delim);
 		if (argum == NULL)
 			{
-				free(commandLine);
 				continue;
 			}
                 pid = fork();
