@@ -70,6 +70,8 @@ if (isatty(STDIN_FILENO))
 ### Authors
 
 Romeo LLangozi | [@romeollangozi](https://github.com/romeollangozi)
+
 Izabela Nelaj | [@izabelanelaj](https://github.com/izabela9)
+
 Silvi Marku | [@silvimarku](https://github.com/SilviMarku)
 
