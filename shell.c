@@ -16,7 +16,7 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 	if (pid == 0)
 	{
 		execvp(argum[0], argum);
-		perror("");
+		perror(NULL);
 		free_argum(argum, commandLine);
 		exit(EXIT_FAILURE);
 	}
@@ -24,7 +24,6 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 	{
 		waitpid(pid, status, 0);
 		*exit_status = WEXITSTATUS(*status);
-
 		free_argum(argum, commandLine);
 		return;
 	}
