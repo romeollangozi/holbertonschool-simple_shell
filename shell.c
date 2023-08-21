@@ -48,6 +48,7 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 
 /**
  * main - Entry point
+ * Return: Always 0
  */
 
 int main(void)
@@ -57,7 +58,7 @@ int main(void)
 	char **argum = NULL;
 	int status = 0, exit_status = 0, chars = 0;
 	size_t max = MAX_CHARS;
-	
+
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
