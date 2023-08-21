@@ -10,9 +10,9 @@ void free_argum(char **argum, char *commandLine)
 	}
 	free(argum);
 }
-void execute(int *status, pid_t pid, char **argum, char *commandLine, int *exit_status)
+void execute(int *status, pid_t pid, char **argum, char *commandLine,
+		int *exit_status)
 {
-
 	if (pid == 0)
 	{
 		execvp(argum[0], argum);
@@ -23,10 +23,8 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine, int *exit_
 	else
 	{
 		waitpid(pid, status, 0);
-		if (WIFEXITED(*status))
-		{
-				*exit_status = WEXITSTATUS(*status);
-		}
+		*exit_status = WEXITSTATUS(*status);
+
 		free_argum(argum, commandLine);
 		return;
 	}
@@ -59,9 +57,9 @@ int main()
 		}
 		argum = token_line(commandLine, delim);
 		if (argum == NULL)
-			{
-				continue;
-			}
+		{
+			continue;
+		}
                 pid = fork();
 		execute(&status, pid, argum, commandLine, &exit_status);
       }
