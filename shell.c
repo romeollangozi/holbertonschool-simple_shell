@@ -6,7 +6,7 @@
  * @commandLine: input that is processed
  */
 
-void free_argum(char **argum, char *commandLine);
+void free_argum(char **argum, char *commandLine)
 {
 	int i = 0;
 	(void) commandLine;
