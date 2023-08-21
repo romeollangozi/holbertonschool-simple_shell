@@ -71,7 +71,7 @@ int main(void)
 			free(commandLine);
 			exit(exit_status);
 		}
-		if (chars == -1)
+		if i(chars == -1)
 		{
 			free(commandLine);
 			exit(0);
@@ -84,5 +84,5 @@ int main(void)
 		pid = fork();
 		execute(&status, pid, argum, commandLine, &exit_status);
 	}
-	exit(0);
+	exit(0)
 }
