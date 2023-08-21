@@ -18,7 +18,7 @@ char  **token_line(char *command_line, char *delim)
 	command_line_copy = malloc(sizeof(char) * strlen(command_line) + 1);
 	strcpy(command_line_copy, command_line);
 	token = strtok(command_line, delim);
-
+ 
 	while (token != NULL)
 	{
 		num_tokens++;
