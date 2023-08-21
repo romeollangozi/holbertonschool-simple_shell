@@ -13,12 +13,11 @@ The project's purpose is to provide a starting point for individuals new to shel
 
 - [Introduction](#introduction)
 - [Requirements](#requirements)
+- [Installation](#installation)
 - [Features](#features)
-- [Installation](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- [Command Execution](#commandexecution)
+- [Examples](#examples)
+- [Authots](#authors)
 
 ## Requirements
 
