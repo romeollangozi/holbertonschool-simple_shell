@@ -9,7 +9,7 @@
 void free_argum(char **argum, char *commandLine)
 {
 	int i = 0;
-	(void) commandLine;
+	(void) commandLine
 	while (argum[i])
 	{
 		free(argum[i]);
