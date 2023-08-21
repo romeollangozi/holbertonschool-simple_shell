@@ -1,4 +1,11 @@
 #include "main.h"
+
+/**
+ * free_argum - function for freeing the memory allocation of the array
+ * @argum: a pointer to an array
+ * @commandLine: input that is processed
+ */
+
 void free_argum(char **argum, char *commandLine)
 {
 	int i = 0;
@@ -10,6 +17,16 @@ void free_argum(char **argum, char *commandLine)
 	}
 	free(argum);
 }
+
+/**
+ * execute - function to execute a command with its arguments
+ * @status: a pointer that will hold the exit status of the child process
+ * @pid: process ID of the child process
+ * @argum: pointer to an array of commands and its arguments
+ * @commandLine: command input
+ * @exit_status: exit status of the program
+ */
+
 void execute(int *status, pid_t pid, char **argum, char *commandLine,
 		int *exit_status)
 {
@@ -27,27 +44,31 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 		free_argum(argum, commandLine);
 		return;
 	}
-
 }
-int main()
+
+/**
+ * main - Entry point
+ */
+
+int main(void)
 {
-        pid_t pid;
-        char *commandLine = NULL, *delim = " \n";
-        char **argum = NULL;
+	pid_t pid;
+	char *commandLine = NULL, *delim = " \n";
+	char **argum = NULL;
 	int status = 0, exit_status = 0, chars = 0;
 	size_t max = MAX_CHARS;
-
+	
 	while (1)
-        {
+	{
 		if (isatty(STDIN_FILENO))
 			printf("$");
-                chars = getline(&commandLine, &max, stdin);
-                if (strcmp(commandLine, "\n") == 0)
-                        continue;
+		chars = getline(&commandLine, &max, stdin);
+		if (strcmp(commandLine, "\n") == 0)
+			continue;
 		if (strcmp(commandLine, "exit\n") == 0)
 		{
 			free(commandLine);
-                        exit(exit_status);
+			exit(exit_status);
 		}
 		if (chars == -1)
 		{
@@ -59,8 +80,8 @@ int main()
 		{
 			continue;
 		}
-                pid = fork();
+		pid = fork();
 		execute(&status, pid, argum, commandLine, &exit_status);
-      }
-	exit (0);
+	}
+	exit(0);
 }
