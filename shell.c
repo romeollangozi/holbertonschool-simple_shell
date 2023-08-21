@@ -35,12 +35,14 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 		execvp(argum[0], argum);
 		fprintf(stderr, "%s: 1: %s: not found\n",argv, argum[0]);
 		free_argum(argum, commandLine);
-		return(127);
+		exit(127);
 	}
 	else
 	{
 		waitpid(pid, status, 0);
-		*exit_status = WEXITSTATUS(*status);
+		if (WIFEXITED(status))
+		*exit_status = 127;
+
 		free_argum(argum, commandLine);
 		return;
 	}
