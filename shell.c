@@ -84,5 +84,5 @@ int main(void)
 		pid = fork();
 		execute(&status, pid, argum, commandLine, &exit_status);
 	}
-	exit(0)
+	exit(0);
 }
