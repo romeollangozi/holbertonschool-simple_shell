@@ -28,12 +28,12 @@ void free_argum(char **argum, char *commandLine)
  */
 
 void execute(int *status, pid_t pid, char **argum, char *commandLine,
-		int *exit_status)
+		int *exit_status ,char *argv)
 {
 	if (pid == 0)
 	{
 		execvp(argum[0], argum);
-		fprintf(stderr, "./hsh: 1: %s: not found\n", argum[0]);
+		fprintf(stderr, "%s: 1: %s: not found\n",argv, argum[0]);
 		free_argum(argum, commandLine);
 		exit(127);
 	}
@@ -51,13 +51,14 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
  * Return: Always 0
  */
 
-int main(void)
+int main(int argc, char *argv[])
 {
 	pid_t pid;
 	char *commandLine = NULL, *delim = " \n";
 	char **argum = NULL;
 	int status = 0, exit_status = 0, chars = 0;
 	size_t max = MAX_CHARS;
+	(void) argc;
 
 	while (1)
 	{
@@ -71,7 +72,7 @@ int main(void)
 			free(commandLine);
 			exit(exit_status);
 		}
-		if i(chars == -1)
+		if (chars == -1)
 		{
 			free(commandLine);
 			exit(0);
@@ -82,7 +83,7 @@ int main(void)
 			continue;
 		}
 		pid = fork();
-		execute(&status, pid, argum, commandLine, &exit_status);
+		execute(&status, pid, argum, commandLine, &exit_status, argv[0]);
 	}
 	exit(0);
 }
