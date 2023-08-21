@@ -10,23 +10,22 @@ void free_argum(char **argum, char *commandLine)
 	}
 	free(argum);
 }
-void execute(int *status , pid_t pid, char **argum, char *commandLine, int *exit_status)
+void execute(int *status , pid_t pid, char **argum, 
+		char *commandLine, int *exit_status)
 {
 
 	if (pid == 0)
 	{
 		execvp(argum[0], argum);
-		perror("");
+		perror(NULL);
 		free_argum(argum, commandLine);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		waitpid(pid, status, 0);
-		if (WIFEXITED(*status))
-		{
-				*exit_status = WEXITSTATUS(*status);
-		}
+		WIFEXITED(*status);
+		*exit_status = WEXITSTATUS(*status);
 		free_argum(argum, commandLine);
 		return;
 	}
