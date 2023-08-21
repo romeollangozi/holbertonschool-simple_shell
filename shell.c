@@ -33,7 +33,7 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 	if (pid == 0)
 	{
 		execvp(argum[0], argum);
-		fprintf(stderr, "%s: 1: %s: not found\n", argum[0], argum[0]);
+		fprintf(stderr, "./hsh: 1: %s: not found\n", argum[0]);
 		free_argum(argum, commandLine);
 		exit(127);
 	}
