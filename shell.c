@@ -15,7 +15,6 @@ void free_argum(char **argum, char *commandLine)
 		free(argum[i]);
 		i++;
 	}
-	free(argum);
 }
 
 /**
