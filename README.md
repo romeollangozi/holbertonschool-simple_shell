@@ -65,6 +65,59 @@ if (isatty(STDIN_FILENO))
 
 ### Examples
 
+ls command
+
+How is executed in the original shell:
+```
+root@6a6fc368bfce:~/holbertonschool-simple_shell# ls
+AUTHORS  main.h  man_1_simple_shell  README.md  shell.c  token_line.c  token_path.c
+```
+
+How is executed in our simple shell:
+
+```
+$ls
+AUTHORS  hsh  main.h  man_1_simple_shell  README.md  shell.c  token_line.c  token_path.c
+$
+```
+
+ls -la command
+
+How is executed in the original shell:
+
+```
+root@6a6fc368bfce:~/holbertonschool-simple_shell# ls -la
+total 52
+drwxr-xr-x 3 root root   156 Aug 22 05:10 .
+drwx------ 1 root root  4096 Aug 22 05:10 ..
+-rw-r--r-- 1 root root   236 Aug 22 03:02 AUTHORS
+drwxr-xr-x 8 root root   220 Aug 22 04:57 .git
+-rwxr-xr-x 1 root root 17968 Aug 22 05:08 hsh
+-rw-r--r-- 1 root root   387 Aug 22 03:04 main.h
+-rwxr--r-- 1 root root  3201 Aug 17 03:49 man_1_simple_shell
+-rw-r--r-- 1 root root  3843 Aug 22 05:10 README.md
+-rw-r--r-- 1 root root  2091 Aug 22 03:09 shell.c
+-rw-r--r-- 1 root root   963 Aug 21 02:00 token_line.c
+-rw-r--r-- 1 root root   939 Aug 22 04:57 token_path.c
+```
+How is executed in our shell:
+
+```
+$ls -la
+total 56
+drwxr-xr-x 3 root root   156 Aug 22 05:11 .
+drwx------ 1 root root  4096 Aug 22 05:11 ..
+-rw-r--r-- 1 root root   236 Aug 22 03:02 AUTHORS
+drwxr-xr-x 8 root root   220 Aug 22 04:57 .git
+-rwxr-xr-x 1 root root 17968 Aug 22 05:11 hsh
+-rw-r--r-- 1 root root   387 Aug 22 03:04 main.h
+-rwxr--r-- 1 root root  3201 Aug 17 03:49 man_1_simple_shell
+-rw-r--r-- 1 root root  4506 Aug 22 05:11 README.md
+-rw-r--r-- 1 root root  2091 Aug 22 03:09 shell.c
+-rw-r--r-- 1 root root   963 Aug 21 02:00 token_line.c
+-rw-r--r-- 1 root root   939 Aug 22 04:57 token_path.c
+$
+```
 
 ### Authors
 
