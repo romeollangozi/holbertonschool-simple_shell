@@ -100,7 +100,7 @@ drwxr-xr-x 8 root root   220 Aug 22 04:57 .git
 -rw-r--r-- 1 root root   963 Aug 21 02:00 token_line.c
 -rw-r--r-- 1 root root   939 Aug 22 04:57 token_path.c
 ```
-How is executed in our shell:
+How is executed in our simple shell:
 
 ```
 $ls -la
