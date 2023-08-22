@@ -34,16 +34,8 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 {
 	if (pid == 0)
 	{
-		if (environ)
-		{
 			execve(path, argum, environ);
 			perror(NULL);
-		}
-		else
-		{
-			execve(path, argum, NULL);
-			perror(NULL);
-		}
 		free(commandLine);
 		free_argum(argum, path);
 	}
