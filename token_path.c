@@ -10,7 +10,7 @@ char *command_path(char *cmd)
 	char *path_array[100], *new_path = NULL;
 	struct stat buf;
 	int i = 0;
-	
+
 	new_path = malloc(sizeof(char) * 100);
 	while (token != NULL)
 	{
