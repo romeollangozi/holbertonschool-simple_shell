@@ -40,9 +40,10 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 	else
 	{
 		waitpid(pid, status, 0);
-		if (WIFEXITED(status))
-		*exit_status = 127;
-
+		if (WIFEXITED(*status))
+		{
+			*exit_status = WEXITSTATUS(*status);
+		}
 		free_argum(argum, commandLine);
 		return;
 	}
