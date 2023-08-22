@@ -1,6 +1,6 @@
 # Simple Shell
 
-This project is about creating a simple shell that mimics the [Bash](https://en.wikipedia.org/wiki/Unix_shell) shell but with limited features.
+This project is about creating a simple shell that mimics the fundamental features of the [Bash](https://en.wikipedia.org/wiki/Unix_shell) shell.
 
 ## Introduction
 
