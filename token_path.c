@@ -6,10 +6,8 @@
  */
 char *command_path(char *cmd)
 {
-	char *path = strdup(getenv("PATH"));
-	char *token = strtok(path, ":");
-	char *path_array[100];
-	char *new_path = NULL;
+	char *path = strdup(getenv("PATH")), *token = strtok(path, ":");
+	char *path_array[100], *new_path = NULL;
 	struct stat buf;
 	int i = 0;
 
@@ -21,13 +19,6 @@ char *command_path(char *cmd)
 		token = strtok(NULL, ":");
 	}
 	path_array[i] = NULL;
-	if (path_array[0] == NULL)
-	{
-		free(path);
-		free(new_path);
-		return (NULL);
-	}
-
 	for (i = 0; path_array[i]; i++)
 	{
 		strcpy(new_path, path_array[i]);
@@ -40,9 +31,7 @@ char *command_path(char *cmd)
 			return (new_path);
 		}
 		else
-		{
 			new_path[0] = 0;
-		}
 	}
 	if (stat(cmd, &buf) == 0)
 	{
