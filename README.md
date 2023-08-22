@@ -74,3 +74,5 @@ Izabela Nelaj | [@izabelanelaj](https://github.com/izabela9)
 
 Silvi Marku | [@silvimarku](https://github.com/SilviMarku)
 
+Ergi Lama | [@ergilama](https://github.com/Ergi004)
+
