@@ -3,19 +3,20 @@
 /**
  * free_argum - function for freeing the memory allocation of the array
  * @argum: a pointer to an array
- * @commandLine: input that is processed
+ * @path: path
  */
 
-void free_argum(char **argum, char *commandLine)
+void free_argum(char **argum, char *path)
 {
 	int i = 0;
-	(void) commandLine;
+
 	while (argum[i])
 	{
 		free(argum[i]);
 		i++;
 	}
 	free(argum);
+	free(path);
 }
 
 /**
@@ -24,19 +25,27 @@ void free_argum(char **argum, char *commandLine)
  * @pid: process ID of the child process
  * @argum: pointer to an array of commands and its arguments
  * @commandLine: command input
+ * @path: path
  * @exit_status: exit status of the program
  */
 
 void execute(int *status, pid_t pid, char **argum, char *commandLine,
-		int *exit_status ,char *argv)
+		int *exit_status, char *path)
 {
 	if (pid == 0)
 	{
-		execvp(argum[0], argum);
-		fprintf(stderr, "%s: 1: %s: not found\n",argv, argum[0]);
+		if (environ)
+		{
+			execve(path, argum, environ);
+			perror(NULL);
+		}
+		else
+		{
+			execve(path, argum, NULL);
+			perror(NULL);
+		}
 		free(commandLine);
-		free_argum(argum, commandLine);
-		exit(127);
+		free_argum(argum, path);
 	}
 	else
 	{
@@ -45,7 +54,7 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 		{
 			*exit_status = WEXITSTATUS(*status);
 		}
-		free_argum(argum, commandLine);
+		free_argum(argum, path);
 		return;
 	}
 }
@@ -57,14 +66,12 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
  * Return: Always 0
  */
 
-int main(int argc, char *argv[])
+int main(int __attribute__ ((unused)) argc, char *argv[])
 {
 	pid_t pid;
-	char *commandLine = NULL, *delim = " \n";
-	char **argum = NULL;
+	char *commandLine = NULL, *delim = " \n", *path = NULL, **argum = NULL;
 	int status = 0, exit_status = 0, chars = 0;
 	size_t max = MAX_CHARS;
-	(void) argc;
 
 	while (1)
 	{
@@ -76,7 +83,7 @@ int main(int argc, char *argv[])
 		if (strcmp(commandLine, "exit\n") == 0)
 		{
 			free(commandLine);
-			return(exit_status);
+			return (exit_status);
 		}
 		if (chars == -1)
 		{
@@ -85,11 +92,20 @@ int main(int argc, char *argv[])
 		}
 		argum = token_line(commandLine, delim);
 		if (argum == NULL)
-		{
 			continue;
+		path = command_path(argum[0]);
+		if (path == NULL)
+		{
+			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], argum[0]);
+			exit_status = 127;
+			free(commandLine);
+			free_argum(argum, path);
+			continue;
+		} else
+		{
+			pid = fork();
+			execute(&status, pid, argum, commandLine, &exit_status, path);
 		}
-		pid = fork();
-		execute(&status, pid, argum, commandLine, &exit_status, argv[0]);
 	}
 	exit(0);
 }
