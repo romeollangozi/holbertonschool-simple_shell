@@ -17,7 +17,7 @@ The project's purpose is to provide a starting point for individuals new to shel
 - [Features](#features)
 - [Command Execution](#commandexecution)
 - [Examples](#examples)
-- [Authots](#authors)
+- [Authors](#authors)
 
 ## Requirements
 
