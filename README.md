@@ -22,8 +22,8 @@ The project's purpose is to provide a starting point for individuals new to shel
 ## Requirements
 
 ### General
-* Allowed editors: vi, vim, emacs
-* All files were compiled on Ubuntu 20.04 LTS using gcc, using the options -Wall -Werror -Wextra -pedantic -std=gnu89
+* Allowed editors: `vi`, `vim`, `emacs`
+* All files were compiled on Ubuntu 20.04 LTS using `gcc`, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
 * Betty coding style is followed.
 * The simple shell has no known memory leaks
 
