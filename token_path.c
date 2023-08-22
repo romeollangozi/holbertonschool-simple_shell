@@ -16,7 +16,10 @@ char *command_path(char *cmd)
 	new_path = malloc(sizeof(char) * 100);
 	if (path == NULL)
 		if (stat(cmd, &buf) == 0)
+		{
+			free(new_path);
 			return (strdup(cmd));
+		}
 	while (token != NULL)
 	{
 		path_array[i] = token;
@@ -40,6 +43,10 @@ char *command_path(char *cmd)
 			new_path[0] = 0;
 	}
 	if (stat(cmd, &buf) == 0)
+	{
+		free(new_path);
+		free(path);
 		return (strdup(cmd));
+	}
 	return (NULL);
 }

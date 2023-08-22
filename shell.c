@@ -98,7 +98,6 @@ int main(int __attribute__ ((unused)) argc, char *argv[])
 		{
 			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], argum[0]);
 			exit_status = 127;
-			free(commandLine);
 			free_argum(argum, path);
 			continue;
 		} else
