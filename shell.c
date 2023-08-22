@@ -85,7 +85,9 @@ int main(int __attribute__ ((unused)) argc, char *argv[])
 		argum = token_line(commandLine, delim);
 		if (argum == NULL)
 			continue;
-		path = command_path(argum[0]);
+		if (getenv("PATH"))
+			path = command_path(argum[0]);
+
 		if (path == NULL)
 		{
 			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], argum[0]);
