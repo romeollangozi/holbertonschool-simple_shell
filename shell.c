@@ -51,12 +51,10 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 
 /**
  * main - Entry point
- * @argc: argument count
- * @argv: list of arguments
  * Return: Always 0
  */
 
-int main(int __attribute__ ((unused)) argc, char *argv[])
+int main(void)
 {
 	pid_t pid;
 	char *commandLine = NULL, *delim = " \n", **argum = NULL;
