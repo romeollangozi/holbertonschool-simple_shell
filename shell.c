@@ -34,6 +34,7 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 	{
 		execvp(argum[0], argum);
 		fprintf(stderr, "%s: 1: %s: not found\n",argv, argum[0]);
+		free(commandLine);
 		free_argum(argum, commandLine);
 		exit(127);
 	}
