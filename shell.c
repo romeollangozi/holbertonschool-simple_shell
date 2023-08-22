@@ -69,7 +69,7 @@ int main(void)
 		if (strcmp(commandLine, "exit\n") == 0)
 		{
 			free(commandLine);
-			exit(exit_status);
+			return(exit_status);
 		}
 		if (chars == -1)
 		{
