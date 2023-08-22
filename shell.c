@@ -52,6 +52,8 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 
 /**
  * main - Entry point
+ * @argc: argument count
+ * @argv: list of arguments
  * Return: Always 0
  */
 
