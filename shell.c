@@ -31,11 +31,13 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 {
 	if (pid == 0)
 	{
-		execvp(argum[0], argum);
-		perror(NULL);
-		free(commandLine);
-		free_argum(argum);
-		exit(127);
+		if(execvp(argum[0], argum) == -1)
+		{
+			perror(NULL);
+			free(commandLine);
+			free_argum(argum);
+			exit(127);
+		}
 	}
 	else
 	{
