@@ -47,6 +47,8 @@ void execute(int *status, pid_t pid, char **argum, char *commandLine,
 			*exit_status = WEXITSTATUS(*status);
 		}
 		free_argum(argum);
+		if (*exit_status != 0)
+			exit(127);
 		return;
 	}
 }
